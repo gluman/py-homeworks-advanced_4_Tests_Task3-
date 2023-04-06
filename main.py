@@ -24,11 +24,19 @@ driver.get(url)
 def auth_with_login_email(login_email, password):
     driver.find_element(By.CLASS_NAME, 'Button2_view_default').click()
     sleep(3)
-    login_input = driver.find_element(By.CLASS_NAME, 'Textinput-Control')
+    login_input = driver.find_element(By.NAME, 'login')
     login_input.clear()
     login_input.send_keys(login_email)
     sleep(3)
-    submit_buttion = driver.find_element(By.CLASS_NAME, 'Button2_type_submit').click()
+    driver.find_element(By.CLASS_NAME, 'Button2_type_submit').click()
+    sleep(3)
+    if driver.current_url == 'https://passport.yandex.ru/auth/welcome':
+        password_input = driver.find_element(By.NAME, 'passwd')
+        password_input.clear()
+        password_input.send_keys(password)
+        sleep(3)
+        submit_buttion = driver.find_element(By.CLASS_NAME, 'Button2_type_submit').click()
+
 
     sleep(10)
 
